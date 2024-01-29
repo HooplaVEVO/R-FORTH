@@ -1,3 +1,1 @@
-add_executable(
-    hello hello.c
-)
+add_executable (hello2 hello.c)
