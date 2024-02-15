@@ -4,13 +4,13 @@ int main(int argc, char** argv) {
     float num1;
     float num2;
     printf("Enter a number: \n");
-    scanf("%d", &num1);
+    scanf("%f", &num1);
     printf("Enter another number: \n");
-    scanf("%d", &num2);
+    scanf("%f", &num2);
 
-    printf("Sum: "+(num1+num2)+"\n");
-    printf("Difference: "+(num1-num2)+"\n");
-    printf("Product: "+(num1*num2)+"\n");
-    printf("Quotient: "+(num1/num2)+"\n");
+    printf("Sum: %f\n",num1+num2);
+    printf("Difference: %f\n",num1-num2);
+    printf("Product: %f\n",num1*num2);
+    printf("Quotient: %f\n",num1/num2);
     return 0;
 }

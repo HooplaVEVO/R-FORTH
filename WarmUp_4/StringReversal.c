@@ -3,9 +3,9 @@
 
 int main(int argc,char** argv) {
     char str[] = "Hello";
-    char result[] = str;
+    char result[] = "";
     int length = 0;
-    while(str[length!='/0']) {
+    while(str[length!=0]) {
         length++;
     }
     for (int i=0; i<(length); i++) {

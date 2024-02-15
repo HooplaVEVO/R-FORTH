@@ -12,17 +12,17 @@ struct LinkedList {
 
 void push(struct LinkedList* llist, int d) {
     struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
-    new_node.data = d;
-    new_node.next = llist.head;
-    llist.head = new_node;
+    new_node->data = d;
+    new_node->next = llist->head;
+    llist->head = new_node;
 }
 
 void deleteNode(struct LinkedList* llist, int key) {
-    struct Node* temp = llist.head;
+    struct Node* temp = llist->head;
     struct Node* prev = NULL;
 
-    if (temp != NULL && temp.data == key) {
-        llist.head = temp.next;
+    if (temp != NULL && temp->data == key) {
+        llist->head = temp->next;
         free(temp);
         return;
     }
@@ -34,14 +34,14 @@ void deleteNode(struct LinkedList* llist, int key) {
 
     if (temp == NULL) return;
 
-    prev.next = temp.next;
+    prev->next = temp->next;
     free(temp);
 }
 
 void printList(struct LinkedList* llist) {
-    struct Node* tnode = llist.head;
+    struct Node* tnode = llist->head;
     while (tnode != NULL) {
-        printf("%d ", tnode.data);
+        printf("%d ", tnode->data);
         tnode = tnode->next;
     }
 }
