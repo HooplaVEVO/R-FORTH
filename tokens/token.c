@@ -24,3 +24,27 @@ char token_text(token_t *token){
 enum Type token_type(token_t *token){
     return token->token_type_t;
 }
+
+void token_print_text(token_t *token){
+    printf("%d",token->token_text_t);
+}
+
+void token_print_type(token_t *token){
+    switch(token->token_type_t) {
+        case 1:
+            printf("Number");
+            break;
+        case 2:
+            printf("Operator");
+            break;
+        case 3:
+            printf("Symbol");
+            break;
+        case 4:
+            printf("Word");
+            break;
+        case 0:
+            printf("NULL");
+            break;
+    }
+}

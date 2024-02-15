@@ -26,4 +26,8 @@ extern char token_text(token_t *token);
 
 extern enum Type token_type(token_t *token);
 
+extern void token_print_text(token_t *token);
+
+extern void token_print_type(token_t *token);
+
 #endif
