@@ -26,7 +26,7 @@ enum Type token_type(token_t *token){
 }
 
 void token_print_text(token_t *token){
-    printf("%d",token->token_text_t);
+    printf("%s",token->token_text_t);
 }
 
 void token_print_type(token_t *token){

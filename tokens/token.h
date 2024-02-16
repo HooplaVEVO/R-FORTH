@@ -20,7 +20,7 @@ extern token_t* token_allocate();
 
 extern void token_new(token_t *token);
 
-extern void token_init(token_t *token,char text,enum Type type);
+extern void token_init(token_t *token, char text, enum Type type);
 
 extern char token_text(token_t *token);
 

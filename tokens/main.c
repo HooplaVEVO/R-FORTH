@@ -3,11 +3,12 @@
 #include "token.h"
 
 int main(int argc,char** argv){
-    char* tokens[] = "";
+    int maxTokens = 10;
+    char* tokens[maxTokens];
     char* str = "";
     printf("Enter a line of input:");
     scanf("%c",str);
-    int tokenCount = SplitString(str,tokens,100);
+    int tokenCount = SplitString(str,tokens,maxTokens);
     for (int i=0;i<tokenCount;i++){
         token_t *t = token_allocate();
         token_new(t);
@@ -19,18 +20,18 @@ int main(int argc,char** argv){
         printf("\n");
     }
 }
-enum Type ParseType(char token){
+int ParseType(char *token){
     if(token=='+'||token=='-'||token=='*'||token=='/'){
-        return enum OPERATOR;
+        return 2;
     }
     else if(isalpha(token)){
-        return enum WORD;
+        return 4;
     } 
     else if (isdigit(token)){
-        return enum NUMBER;
+        return 1;
     }
     else{
-        return enum SYMBOL;
+        return 3;
     }
 }
 
