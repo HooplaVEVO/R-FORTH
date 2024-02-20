@@ -3,7 +3,6 @@
 
 int main(int argc,char** argv){
     token_t *t1 = token_allocate();
-    token_new(t1);
     enum Type var = WORD;
     token_init(t1,"this is a string", var);
     token_print_text(t1);

@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-enum Type{
+enum Type {
     NUMBER = 1,
     OPERATOR,
     SYMBOL,
@@ -13,16 +13,16 @@ enum Type{
 
 typedef struct {
     enum Type token_type_t;
-    char** token_text_t;
+    char *token_text_t;
 } token_t;
 
-extern token_t* token_allocate();
+extern token_t *token_allocate();
 
 extern void token_new(token_t *token);
 
-extern void token_init(token_t *token, char text, enum Type type);
+extern void token_init(token_t *token, char *text, enum Type type);
 
-extern char token_text(token_t *token);
+extern char *token_text(token_t *token);
 
 extern enum Type token_type(token_t *token);
 
