@@ -17,3 +17,14 @@ target_link_libraries(
   tokenInput
   -lm
 )
+
+add_executable(
+  stackDemo
+  int_stack_demo.c
+  int_stack.c
+)
+
+target_link_libraries(
+  stackDemo 
+  -lm
+)
