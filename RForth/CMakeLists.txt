@@ -1,3 +1,7 @@
+FetchContent_MakeAvailable(googletest)
+
+enable_testing()
+
 add_executable (
     token_tests
     token_tests.cc
@@ -6,7 +10,8 @@ add_executable (
 
 target_link_libraries(
   token_tests
-  -lm
+  gtest_main
+  -lpthread
 )
 
 add_executable(
@@ -29,3 +34,6 @@ target_link_libraries(
   stackDemo 
   -lm
 )
+
+include(GoogleTest)
+gtest_discover_tests(token_tests)

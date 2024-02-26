@@ -123,7 +123,7 @@ int int_stack_2swap(int_stack_t *stk) {
     if (stk->size < 4)
         return 0;
     int first_value, second_value, third_value, fourth_value;
-    int_stack_pop(stk, &top_value);
+    int_stack_pop(stk, &first_value);
     int_stack_pop(stk, &second_value);
     int_stack_pop(stk, &third_value);
     int_stack_pop(stk, &fourth_value);
@@ -137,7 +137,7 @@ int int_stack_2over(int_stack_t *stk) {
     if (stk->size < 4)
         return 0;
     int first_value, second_value, third_value, fourth_value;
-    int_stack_pop(stk, &top_value);
+    int_stack_pop(stk, &first_value);
     int_stack_pop(stk, &second_value);
     int_stack_pop(stk, &third_value);
     int_stack_pop(stk, &fourth_value);
@@ -207,4 +207,10 @@ int int_stack_size(int_stack_t* stk) {
 
 int int_stack_capacity(int_stack_t* stk) {
     return stk->capacity;
+}
+
+void int_stack_free(int_stack_t* stk){
+    free(stk->size);
+    free(stk->capacity);
+    free(stk);
 }

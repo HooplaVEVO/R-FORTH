@@ -30,4 +30,6 @@ extern void token_print_text(token_t *token);
 
 extern void token_print_type(token_t *token);
 
+extern void token_free(token_t *token);
+
 #endif

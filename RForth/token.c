@@ -54,3 +54,8 @@ void token_print_type(token_t *token) {
             break;
     }
 }
+
+void token_free(token_t *token){
+    free(token->token_text_t);
+    free(token);
+}
