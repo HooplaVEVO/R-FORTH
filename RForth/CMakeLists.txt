@@ -15,13 +15,10 @@ target_link_libraries(
 )
 
 add_executable(
-  tokenInput
+  RForth
   main.c
   token.c
-)
-target_link_libraries(
-  tokenInput
-  -lm
+  int_stack.c
 )
 
 add_executable(
