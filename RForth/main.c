@@ -8,16 +8,16 @@ int ParseType(const char *token);
 int SplitString(char *str, char *tokens[], const int maxTokens);
 
 int main() {
-    int maxTokens = 50;
+    int max_tokens = 50;
     int stk_cap = 20;
-    char *tokens[maxTokens];
-    int_stack_t* stk; 
-    int_stack_init(stk, stk_cap);
+    char *tokens[max_tokens];
+    int_stack_t stk;
+    int_stack_init(&stk, stk_cap);
     char str[256]; 
     printf("This is Myles Kaufman's implementation of Forth in C. Type quit to close the program.");
     while (1) {
         fgets(str, sizeof(str), stdin);
-        int tokenCount = SplitString(str, tokens, maxTokens);
+        int tokenCount = SplitString(str, tokens, max_tokens);
 
         if (strcmp(str, "quit") == 0) {
             printf("Exiting the program.\n");
@@ -31,10 +31,9 @@ int main() {
 
                 //If token is of type NUMBER, convert to int and push to the stack.
                 if (token_type(t)==NUMBER) {
-                    char *endptr;
-                    long int tokenInt = strtol(token_text(t), &endptr, 10);
-                    int_stack_push(stk,tokenInt);
-                    printf("Integer pushed to stack successfully. Result: %ld\n", tokenInt);
+                    char **endptr;
+                    long int tokenInt = strtol(token_text(t), endptr, 10);
+                    int_stack_push(&stk,(int)tokenInt);
                     token_free(t);
                 }
 
@@ -42,16 +41,16 @@ int main() {
                 if (token_type(t) == OPERATOR) {
                     switch (*token_text(t)) {
                         case '+':
-                            int_stack_add(stk);
+                            int_stack_add(&stk);
                             break;
                         case '-':
-                            int_stack_sub(stk);
+                            int_stack_sub(&stk);
                             break;
                         case '*':
-                            int_stack_mul(stk);
+                            int_stack_mul(&stk);
                             break;
                         case '/':
-                            int_stack_div(stk);
+                            int_stack_div(&stk);
                             break;
                         default:
                             printf("WARNING: Unidentified Operator\n");
@@ -67,35 +66,35 @@ int main() {
                 //If token is of WORD type, just check for all stack operations for now
                 if(token_type(t)==WORD){
                     if(strcmp(token_text(t), "swap") == 0){
-                        int_stack_swap(stk);
+                        int_stack_swap(&stk);
                     }
                     if(strcmp(token_text(t), "dup") == 0){
-                        int_stack_dup(stk);
+                        int_stack_dup(&stk);
                     }
                     if(strcmp(token_text(t), "rot") == 0){
-                        int_stack_rot(stk);
+                        int_stack_rot(&stk);
                     }
                     if(strcmp(token_text(t), "drop") == 0){
-                        int_stack_drop(stk);
+                        int_stack_drop(&stk);
                     }
                     if(strcmp(token_text(t), "over") == 0){
-                        int_stack_over(stk);
+                        int_stack_over(&stk);
                     }
                     if(strcmp(token_text(t), "2swap") == 0){
-                        int_stack_2swap(stk);
+                        int_stack_2swap(&stk);
                     }
                     if(strcmp(token_text(t), "2drop") == 0){
-                        int_stack_2drop(stk);
+                        int_stack_2drop(&stk);
                     }
                     if(strcmp(token_text(t), "2over") == 0){
-                        int_stack_2over(stk);
+                        int_stack_2over(&stk);
                     }
                     if(strcmp(token_text(t), "2dup") == 0){
-                        int_stack_2dup(stk);
+                        int_stack_2dup(&stk);
                     }
                     token_free(t);
                 }
-                int_stack_print(stk,stdout);
+                int_stack_print(&stk,stdout);
             }
             
         }

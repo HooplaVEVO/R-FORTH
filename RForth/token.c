@@ -23,7 +23,7 @@ void token_init(token_t *token, char *text, enum Type type) {
     token->token_type_t = type;
 }
 
-char *token_text(token_t *token) {
+char* token_text(token_t *token) {
     return token->token_text_t;
 }
 
