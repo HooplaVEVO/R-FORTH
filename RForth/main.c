@@ -58,12 +58,20 @@ int main() {
                     }
                     token_free(t);
                 }
-                //If word is of type symbol, do nothing for now
+                //If word is of type symbol, just check for conditionals for now
                 if(token_type(t)==SYMBOL){
-                    //Do stuff
+                    if(strcmp(token_text(t), "=") == 0){
+                        int_stack_equals(&stk);
+                    }
+                    if(strcmp(token_text(t), "<") == 0){
+                        int_stack_less(&stk);
+                    }
+                    if(strcmp(token_text(t), ">") == 0){
+                        int_stack_greater(&stk);
+                    }
                     token_free(t);
                 }
-                //If token is of WORD type, just check for all stack operations for now
+                //If token is of WORD type, just check for all stack operations for now (variable support coming)
                 if(token_type(t)==WORD){
                     if(strcmp(token_text(t), "swap") == 0){
                         int_stack_swap(&stk);
@@ -102,6 +110,7 @@ int main() {
     return 0;
 }
 
+//Method to determine token type
 int ParseType(const char *token) {
     if (*token == '+' || *token == '-' || *token == '*' || *token == '/') {
         return OPERATOR;
@@ -114,6 +123,7 @@ int ParseType(const char *token) {
     }
 }
 
+//Method to break user input into separate tokens.
 int SplitString(char *str, char *tokens[], const int maxTokens) {
     int i = 0;
     for (i = 0; i < maxTokens; i++) {
