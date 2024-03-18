@@ -19,6 +19,7 @@ add_executable(
   main.c
   token.c
   int_stack.c
+  function.c
 )
 
 add_executable(

@@ -23,18 +23,29 @@ int main() {
             printf("Exiting the program.\n");
             break;
         } else {
-            //Creating a token struct for every line of input and determining what to do with it.
+            //Creating an array of token structs and passing it to the execute tokens method
+            token_t token_array[tokenCount];
             for (int i = 0; i < tokenCount; i++) {
                 token_t *t = token_allocate();
                 token_new(t);
                 token_init(t, tokens[i], ParseType(tokens[i]));
+                token_array[i] = t;
+            }
+            executeTokens(token_array,token_count,stk);
+        }
+    }
+    return 0;
+}
 
+int executeTokens(token_t tokens[],int token_count,int_stack_t stk){
+    for (int i=0;i<token_count;i++){
+        token_t *t = tokens[i];
                 //If token is of type NUMBER, convert to int and push to the stack.
                 if (token_type(t)==NUMBER) {
                     char **endptr;
                     long int tokenInt = strtol(token_text(t), endptr, 10);
                     int_stack_push(&stk,(int)tokenInt);
-                    token_free(t);
+                    //token_free(t);
                 }
 
                 //If token is of type OPERATOR, call the specific stack operation.
@@ -56,7 +67,7 @@ int main() {
                             printf("WARNING: Unidentified Operator\n");
                             break;
                     }
-                    token_free(t);
+                    //token_free(t);
                 }
                 //If word is of type symbol, just check for conditionals for now
                 if(token_type(t)==SYMBOL){
@@ -69,7 +80,14 @@ int main() {
                     if(strcmp(token_text(t), ">") == 0){
                         int_stack_greater(&stk);
                     }
-                    token_free(t);
+                    if(strcmp(token_text(t), ".") == 0){
+                        int *a;
+                        printf(int_stack_pop(&stk,a)+"\n");
+                    }
+                    if(strcmp(token_text(t), ".\"") == 0){//Special output case
+                    
+                    }
+                    //token_free(t);
                 }
                 //If token is of WORD type, just check for all stack operations for now (variable support coming)
                 if(token_type(t)==WORD){
@@ -100,15 +118,13 @@ int main() {
                     if(strcmp(token_text(t), "2dup") == 0){
                         int_stack_2dup(&stk);
                     }
-                    token_free(t);
+                    //token_free(t);
                 }
                 int_stack_print(&stk,stdout);
             }
-            
-        }
-    }
-    return 0;
+            return 0;
 }
+            
 
 //Method to determine token type
 int ParseType(const char *token) {
